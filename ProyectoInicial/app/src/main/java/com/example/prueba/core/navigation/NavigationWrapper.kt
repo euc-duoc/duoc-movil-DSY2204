@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.prueba.PrincipalScreen
 import com.example.prueba.SecundariaScreen
+import com.example.prueba.UsuariosScreen
 
 @Composable
 fun NavigationWrapper(modifier: Modifier) {
@@ -15,9 +16,12 @@ fun NavigationWrapper(modifier: Modifier) {
 
     NavHost(navController = navController, startDestination = Principal)  {
         composable<Principal> {
-            PrincipalScreen("Principal", modifier) {
-                dato -> navController.navigate(Secundaria(dato = dato))
-            }
+            PrincipalScreen(
+                nombre = "Principal",
+                modifier = modifier,
+                navigateToSecundaria = { dato -> navController.navigate(Secundaria(dato = dato)) },
+                navigateToUsuarios = { navController.navigate(Usuarios) }
+            )
         }
 
         composable<Secundaria> {
@@ -26,6 +30,10 @@ fun NavigationWrapper(modifier: Modifier) {
             SecundariaScreen(detalle.dato, modifier) {
                 navController.navigate(Principal)
             }
+        }
+
+        composable<Usuarios> {
+            UsuariosScreen(modifier)
         }
     }
 }

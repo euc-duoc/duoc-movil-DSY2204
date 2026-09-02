@@ -22,7 +22,8 @@ import androidx.compose.ui.unit.dp
 fun PrincipalScreen(
     nombre: String,
     modifier: Modifier,
-    navigateToSecundaria: (String) -> Unit
+    navigateToSecundaria: (String) -> Unit,
+    navigateToUsuarios: () -> Unit,
 ) {
     var dato by remember { mutableStateOf("") }
     var errorVacio by remember { mutableStateOf(false) }
@@ -62,6 +63,12 @@ fun PrincipalScreen(
                 navigateToSecundaria(dato)
         }) {
             Text(text = "Ir a secundaria")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button (onClick = { navigateToUsuarios() }) {
+            Text(text = "Ver usuarios")
         }
     }
 }

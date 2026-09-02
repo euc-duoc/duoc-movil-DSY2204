@@ -7,3 +7,5 @@ object Principal
 
 @Serializable
 data class Secundaria(val dato:String)
+@Serializable
+object Usuarios
